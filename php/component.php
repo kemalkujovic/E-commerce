@@ -52,9 +52,10 @@ function cartElement($productimg, $productname, $productprice, $productid){
                             </div>
                             <div class=\"col-md-3 py-5\">
                                 <div>
-                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-minus\"></i></button>
-                                    <input type=\"text\" value=\"1\" class=\"form-control w-25 d-inline\">
-                                    <button type=\"button\" class=\"btn bg-light border rounded-circle\"><i class=\"fas fa-plus\"></i></button>
+                                <button type=\"button\" class=\"decrease-button btn bg-light border rounded-circle\" data-product-id=\"$productid\"><i class=\"fas fa-minus\"></i></button>
+                                <input type=\"text\" name=\"productId\"  id=\"quantity_$productid\" value=\"1\" class=\"form-control w-25 d-inline\">
+                                <button type=\"button\" class=\"increase-button btn bg-light border rounded-circle\" data-product-id=\"$productid\"><i class=\"fas fa-plus\"></i></button>
+
                                 </div>
                             </div>
                         </div>
