@@ -2,7 +2,7 @@ let decreaseButtons = document.getElementsByClassName("decrease-button");
 let increaseButtons = document.getElementsByClassName("increase-button");
 
 const decreaseQuantity = (e) => {
-  let button = e.target;
+  let button = e.target.closest(".decrease-button");
   let productId = button.getAttribute("data-product-id");
   let quantityElement = document.getElementById("quantity_" + productId);
   let quantity = quantityElement.value;
@@ -12,7 +12,7 @@ const decreaseQuantity = (e) => {
   }
 };
 const increaseQuantity = (e) => {
-  let button = e.target;
+  let button = e.target.closest(".increase-button");
   let productId = button.getAttribute("data-product-id");
   let quantityElement = document.getElementById("quantity_" + productId);
   let quantity = quantityElement.value;
