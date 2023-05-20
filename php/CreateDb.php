@@ -57,6 +57,7 @@ class CreateDb
         }else{
             return false;
         }
+       
     }
 
     // get product from the database

@@ -32,13 +32,12 @@ $database = new CreateDb("Productdb", "Producttb");
 <main class="container d-flex direction-column text-center py-5">
     
     <div class="row text-center ">
-        <?php
-        component();
-        component();
-        component();
-        component();
-       
-        ?>
+    <?php
+                $result = $database->getData();
+                while ($row = mysqli_fetch_assoc($result)){
+                    component($row['product_name'], $row['product_price'], $row['product_image'], $row['id']);
+                }
+            ?>
     </div>
 </main>
 
