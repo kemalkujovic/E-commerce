@@ -8,7 +8,11 @@
     <title>Registration</title>
 </head>
 <body>
-<div class="container">
+<?php
+    require_once ('php/header.php');
+?>
+
+<div class="container py-5">
         <form action="registration.php" method="post">
             <div class="form-group">
                 <input type="text" class="form-control" require name="fullname" placeholder="Ime i Prezime:">
