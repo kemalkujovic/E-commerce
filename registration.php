@@ -1,3 +1,37 @@
+<?php
+@include 'config.php';
+
+if(isset($_POST['submit'])){
+
+    $name = mysqli_real_escape_string($conn,$_POST['name']);
+    $lastname = mysqli_real_escape_string($conn,$_POST['lastname']);
+    $email = mysqli_real_escape_string($conn,$_POST['email']);
+    $pass = md5($_POST['password']);
+    $cpass = md5($_POST['repeat_password']);
+    $jmbg = mysqli_real_escape_string($conn,$_POST['jmbg']);
+    $broj_telefona = mysqli_real_escape_string($conn,$_POST['contact_number']);
+    $user_type = $_POST['user_type'];
+
+    $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
+    $result = mysqli_query($conn, $select);
+
+    if(mysqli_num_rows($result) > 0){
+        $error[] = 'user alredy exist!';
+    }else{
+        if($pass != $cpass){
+            $error[] = 'password not matched!';
+        }else{
+            $insert = "INSERT INTO user_form(ime, prezime, email,password,jmbg,broj_telefona, user_type) VALUES('$name', '$lastname', '$email', '$pass', '$jmbg','$broj_telefona', '$user_type')";
+            mysqli_query($conn, $insert);
+            header('location:login.php');
+        }
+    }
+
+};
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,6 +48,13 @@
 
 <div class="container  mt-5 border border-secondary">
         <form class="py-3" action="registration.php" method="post">
+            <?php
+            if(isset($error)){
+                foreach($error as $error){
+                    echo '<span class="error-msg">'.$error.'</span>';
+                }
+            };
+            ?>
             <div class="form-group">
                 <input type="text" class="form-control" require name="name" placeholder="Ime:">
             </div>
