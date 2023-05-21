@@ -12,10 +12,13 @@
     require_once ('php/header.php');
 ?>
 
-<div class="container py-5">
-        <form action="registration.php" method="post">
+<div class="container  mt-5 border border-secondary">
+        <form class="py-3" action="registration.php" method="post">
             <div class="form-group">
-                <input type="text" class="form-control" require name="fullname" placeholder="Ime i Prezime:">
+                <input type="text" class="form-control" require name="name" placeholder="Ime:">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" require name="lastname" placeholder="Prezime:">
             </div>
             <div class="form-group">
                 <input type="email" class="form-control" require name="email" placeholder="Email:">
@@ -38,12 +41,12 @@
             <div class="form-group">
                 <input type="number" class="form-control" require min=8  name="contact_number" placeholder="Kontakt mobilini telefon:">
             </div>
-            <select name="user_type">
-                <option value="user">User</option>
-                <option value="admin">Admin</option>
+            <select class="form-control" name="user_type">
+                <option  value="user">User</option>
+                <option  value="admin">Admin</option>
             </select>
-            <div class="form-btn">
-                <input type="submit" class="btn btn-primary" value="Register" name="submit">
+            <div class="form-btn py-3">
+                <input type="submit" class="btn btn-primary btn-lg btn-block" value="Register" name="submit">
             </div>
         </form>
         <div>
