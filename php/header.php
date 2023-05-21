@@ -1,4 +1,5 @@
 
+
 <header id="header">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <a href="index.php" class="navbar-brand">
@@ -31,6 +32,7 @@
                         }else{
                             echo "<span id=\"cart_count\" class=\"text-warning bg-light rounded-circle p-2 \">0</span>";
                         }
+                            
 
                         ?>
                     </h5>

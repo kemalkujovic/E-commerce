@@ -21,7 +21,6 @@ function component($productname, $productprice, $productimg, $productid){
                                 Some quick example text to build on the card.
                             </p>
                             <h5>
-                                <small><s class=\"text-secondary\">$519</s></small>
                                 <span class=\"price\">$$productprice</span>
                             </h5>
 
