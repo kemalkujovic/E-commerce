@@ -20,9 +20,9 @@
 
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="mr-auto"></div>
-            <div class="navbar-nav">
+            <div class="navbar-nav ">
                 <a href="cart.php" class="nav-item nav-link active">
-                    <h5 class="px-5 cart">
+                    <h5 class="d-flex px-5 cart">
                         <i class="fas fa-shopping-cart"></i> Cart
                         <?php
 
@@ -32,9 +32,24 @@
                         }else{
                             echo "<span id=\"cart_count\" class=\"text-warning bg-light rounded-circle p-2 \">0</span>";
                         }
-                            
+
 
                         ?>
+                         <?php
+           if (isset($_SESSION['admin_name'])) {
+            // Prijavljen je admin
+            echo '<li>Dobrodošli, ' . $_SESSION['admin_name'] . '!</li>';
+            echo '<li><a href="logout.php">Odjava</a></li>';
+        } elseif (isset($_SESSION['user_name'])) {
+            // Prijavljen je korisnik
+            echo '<li>Dobrodošli, ' . $_SESSION['user_name'] . '!</li>';
+            echo '<li><a href="logout.php">Odjava</a></li>';
+        } else {
+            // Korisnik nije prijavljen
+            echo '<li><a href="login.php">Prijava</a></li>';
+            echo '<li><a href="registration.php">Registracija</a></li>';
+        }
+        ?>
                     </h5>
                 </a>
             </div>
