@@ -38,6 +38,7 @@ if(isset($_POST['submit'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
     <title>Registration</title>
 </head>
 <body>
@@ -47,13 +48,7 @@ if(isset($_POST['submit'])){
 
 <div class="container  mt-5 border border-secondary">
         <form class="py-3" action="registration.php" method="post">
-            <?php
-            if(isset($error)){
-                foreach($error as $error){
-                    echo '<span class="error-msg">'.$error.'</span>';
-                }
-            };
-            ?>
+            
             <div class="form-group">
                 <input type="text" class="form-control" require name="name" placeholder="Ime:">
             </div>
@@ -85,6 +80,13 @@ if(isset($_POST['submit'])){
                 <option  value="user">User</option>
                 <option  value="admin">Admin</option>
             </select>
+            <?php
+            if(isset($error)){
+                foreach($error as $error){
+                    echo '<span class="error-msg">'.$error.'</span>';
+                }
+            };
+            ?>
             <div class="form-btn py-3">
                 <input type="submit" class="btn btn-primary btn-lg btn-block" value="Register" name="submit">
             </div>
