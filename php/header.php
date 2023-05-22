@@ -23,17 +23,17 @@
             <div class="navbar-nav ">
                 <a href="cart.php" class="nav-item nav-link active">
                     <h5 class="d-flex px-5 cart">
-                        <i class="fas fa-shopping-cart"></i> Cart
+                      
                         <?php
-
-                        if (isset($_SESSION['cart'])){
-                            $count = count($_SESSION['cart']);
-                            echo "<span id=\"cart_count\" class=\"text-warning bg-light rounded-circle p-2\">$count</span>";
-                        }else{
-                            echo "<span id=\"cart_count\" class=\"text-warning bg-light rounded-circle p-2 \">0</span>";
-                        }
-
-
+                             if(isset($_SESSION['admin_name']) || isset($_SESSION['user_name'])){
+                                echo "<i class=\"fas fa-shopping-cart\"></i> Cart";
+                                if (isset($_SESSION['cart'])){
+                                    $count = count($_SESSION['cart']);
+                                    echo "<span id=\"cart_count\" class=\"text-warning bg-light rounded-circle p-2\">$count</span>";
+                                }else{
+                                    echo "<span id=\"cart_count\" class=\"text-warning bg-light rounded-circle p-2 \">0</span>";
+                                }
+                             }
                         ?>
                          <?php
            if (isset($_SESSION['admin_name'])) {
@@ -42,11 +42,11 @@
             echo '<li><a href="logout.php">Odjava</a></li>';
         } elseif (isset($_SESSION['user_name'])) {
             // Prijavljen je korisnik
-            echo '<li>Dobrodošli, ' . $_SESSION['user_name'] . '!</li>';
+            echo '<li >Dobrodošli, ' . $_SESSION['user_name'] . '!</li>';
             echo '<li><a href="logout.php">Odjava</a></li>';
         } else {
             // Korisnik nije prijavljen
-            echo '<li><a href="login.php">Prijava</a></li>';
+            echo '<li class="d-flex mr-2"><a href="login.php">Prijava</a></li>';
             echo '<li><a href="registration.php">Registracija</a></li>';
         }
         ?>
