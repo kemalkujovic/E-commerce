@@ -39,7 +39,13 @@ if(isset($_POST['submit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script defer src="js/Validation.js"></script>
     <title>Registration</title>
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <?php
@@ -47,19 +53,22 @@ if(isset($_POST['submit'])){
 ?>
 
 <div class="container  mt-5 border border-secondary">
-        <form class="py-3" action="registration.php" method="post">
+        <form class="py-3" action="registration.php" method="post" onsubmit="return validateForm()">
             
             <div class="form-group">
-                <input type="text" class="form-control" require name="name" placeholder="Ime:">
+                <input type="text" class="form-control" id="name" require name="name" placeholder="Ime:">
+                <span id="nameError" class="error"></span>
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" require name="lastname" placeholder="Prezime:">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" require name="email" placeholder="Email:">
+                <input type="email" class="form-control" id="email" require name="email" placeholder="Email:">
+                <span id="emailError" class="error"></span>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control" require name="password" placeholder="Lozinka:">
+                <input type="password" class="form-control" id="password" require name="password" placeholder="Lozinka:">
+                <span id="passwordError" class="error"></span>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" require name="repeat_password" placeholder="Ponovite Lozinku:">
