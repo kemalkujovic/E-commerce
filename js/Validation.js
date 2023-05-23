@@ -8,11 +8,14 @@ function validateForm() {
   const emailError = document.getElementById("emailError");
   const passwordError = document.getElementById("passwordError");
   const lastNameError = document.getElementById("lastNameError");
+
   nameError.textContent = "";
   emailError.textContent = "";
   passwordError.textContent = "";
   lastNameError.textContent = "";
+
   let errors = {};
+
   if (name.length < 3) {
     errors.name = "Ime mora imati vise od 2 karaktera.";
   }
@@ -42,5 +45,6 @@ function validateForm() {
     }
     return false;
   }
+
   return true;
 }

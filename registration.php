@@ -13,7 +13,6 @@ if(isset($_POST['submit'])){
 
     $select = " SELECT * FROM user_form WHERE email = '$email' && password = '$pass' ";
     $result = mysqli_query($conn, $select);
-
     if(mysqli_num_rows($result) > 0){
         $error[] = 'user alredy exist!';
     }else{
