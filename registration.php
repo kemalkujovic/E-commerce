@@ -1,5 +1,10 @@
 <?php
 @include 'config.php';
+if (isset($_SESSION['user_name']) || isset($_SESSION['admin_name'])) {
+    header('location: index.php');
+    exit();
+}   
+
 if(isset($_POST['submit'])){
 
     $name = mysqli_real_escape_string($conn,$_POST['name']);

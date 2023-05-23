@@ -1,5 +1,12 @@
 <?php
+session_start();
 @include 'config.php';
+if (isset($_SESSION['user_name']) || isset($_SESSION['admin_name'])) {
+    header('location: index.php');
+    exit();
+}
+
+
 if(isset($_POST['submit'])){
 
     $email = mysqli_real_escape_string($conn,$_POST['email']);
@@ -9,7 +16,7 @@ if(isset($_POST['submit'])){
     if(mysqli_num_rows($result) > 0){
 
         $row = mysqli_fetch_array($result);
-  
+        
         if($row['user_type'] == 'admin'){
             $_SESSION['admin_name'] = $row['ime'];  
            header('location:index.php');
