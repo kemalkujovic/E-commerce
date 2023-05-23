@@ -1,5 +1,5 @@
 function validateForm() {
-  const ime = document.getElementById("name").value;
+  const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const lozinka = document.getElementById("password").value;
   const lastName = document.getElementById("lastName").value;
@@ -12,26 +12,35 @@ function validateForm() {
   emailError.textContent = "";
   passwordError.textContent = "";
   lastNameError.textContent = "";
-
-  // Provjera da li ime vise od 2 karaktera.
-  if (ime.length < 3) {
-    nameError.textContent = "Ime mora imati vise od 2 karaktera.";
-    return false;
+  let errors = {};
+  if (name.length < 3) {
+    errors.name = "Ime mora imati vise od 2 karaktera.";
   }
   if (lastName.length < 3) {
-    lastNameError.textContent = "Prezime mora imati vise od 2 karaktera.";
-    return false;
+    errors.prezime = "Prezime mora imati vise od 2 karaktera.";
   }
   if (lozinka.length < 6) {
-    passwordError.textContent = "Lozinka mora imati najmanje 6 karaktera.";
-    return false;
+    errors.passowrd = "Lozinka mora imati najmanje 6 karaktera";
   }
-  // Provjera  e-mail adrese
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   if (!email.match(emailRegex)) {
-    emailError.textContent = "Unesite ispravnu E-mail adresu.";
-    return false;
+    errors.email = "Unesite ispravnu E-mail adresu.";
   }
 
+  if (Object.keys(errors).length > 0) {
+    if (errors.name) {
+      nameError.textContent = errors.name;
+    }
+    if (errors.prezime) {
+      lastNameError.textContent = errors.prezime;
+    }
+    if (errors.passowrd) {
+      passwordError.textContent = errors.passowrd;
+    }
+    if (errors.email) {
+      emailError.textContent = errors.email;
+    }
+    return false;
+  }
   return true;
 }
