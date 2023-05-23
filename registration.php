@@ -60,7 +60,8 @@ if(isset($_POST['submit'])){
                 <span id="nameError" class="error"></span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" require name="lastname" placeholder="Prezime:">
+                <input type="text" class="form-control" require name="lastname" id="lastName" placeholder="Prezime:">
+                <span id="lastNameError" class="error"></span>
             </div>
             <div class="form-group">
                 <input type="email" class="form-control" id="email" require name="email" placeholder="Email:">
