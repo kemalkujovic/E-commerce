@@ -1,5 +1,11 @@
 <?php
 @include 'config.php';
+if (!isset($_SESSION['admin_name'])) {
+    header('location: index.php');
+    exit();
+}
+
+
 
 if(isset($_POST['add_product'])){
     $p_name = $_POST['p_name'];
