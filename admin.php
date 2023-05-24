@@ -49,8 +49,8 @@ if(isset($message)){
     <h3 class="text-white pt-3">Add a new product</h3>
     <input type="text" name="p_name" placeholder="Enter the product name" class="w-100 mt-3" required>
     <input type="number" name="p_price" min="0" placeholder="Enter the product price" class="w-100 mt-3" required>
-    <input type="file" name="p_image" accept="image/png, image/jpg, image/jpeg" class="w-100 mt-3 bg-light" required>
     <input type="text" name="p_description" placeholder="Enter the product description" class="w-100 mt-3" required>
+    <input type="file" name="p_image" accept="image/png, image/jpg, image/jpeg" class="w-100 mt-3 bg-light" required>
     <input type="submit" value="Add the product" name="add_product" class="btn btn-primary w-100 mb-3 mt-3">
     </form>
 </section>
