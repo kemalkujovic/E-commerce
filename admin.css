@@ -1,0 +1,28 @@
+.product-msg {
+  position: sticky;
+  background-color: silver;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  padding: 1.5rem 2rem;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.product-msg span {
+  font-style: 2rem;
+  color: white;
+}
+
+.product-msg i {
+  font-style: 2.5rem;
+  color: black;
+  cursor: pointer;
+}
+.product-msg i:hover {
+  color: red;
+}

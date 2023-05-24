@@ -1,6 +1,13 @@
 <?php
 @include 'config.php';
 
+// if (!isset($_SESSION['admin_name'])) {
+//     header('location: index.php');
+//     exit();
+// }
+
+
+
 if(isset($_POST['add_product'])){
     $p_name = $_POST['p_name'];
     $p_description = $_POST['p_description'];
@@ -28,8 +35,8 @@ if(isset($_POST['add_product'])){
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="./admin.css">
     <title>Admin Page</title>
 </head>
 <body>
@@ -37,13 +44,12 @@ if(isset($_POST['add_product'])){
 <?php
 if(isset($message)){
     foreach($message as $message){
-        echo '<div class="message"><span>'.$message.'</span><i class="fas fa times" onclick="this.parentElement.style.display = `none`;"></i></div>';
+        echo '<div class="product-msg"><span>'.$message.'</span><i class="fa-solid fa-x" onclick="this.parentElement.style.display = `none`;"></i></div>';
     };
 };
 ?>
 <?php require_once("php/header.php")?>
 <div class="container mt-5 bg-secondary w-50">
-
 <section >
     <form action="" method="post" class="add-product-form" enctype="multipart/form-data">
     <h3 class="text-white pt-3">Add a new product</h3>
