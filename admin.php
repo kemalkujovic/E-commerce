@@ -1,12 +1,6 @@
 <?php
 @include 'config.php';
 
-// if (!isset($_SESSION['admin_name'])) {
-//     header('location: index.php');
-//     exit();
-// }
-
-
 if(isset($_POST['add_product'])){
     $p_name = $_POST['p_name'];
     $p_description = $_POST['p_description'];
@@ -15,16 +9,23 @@ if(isset($_POST['add_product'])){
     $p_image_tmp_name = $_FILES['p_image']['tmp_name'];
     $p_image_folder = 'uploaded_img/'.$p_image;
 
-    $insert_query = mysqli_query($product_db, "INSERT INTO `products`(name, price, image,description) VALUES('$p_name', '$p_price', '$p_image', '$p_description')") or die('query failed');
+// Provera da li proizvod već postoji
+$check_query = mysqli_query($product_db, "SELECT id FROM `products` WHERE name = '$p_name'");
+
+if(mysqli_num_rows($check_query) > 0){
+    $message[] = 'Proizvod već postoji u bazi.';
+} else {
+    // Proizvod ne postoji INSERT upit
+    $insert_query = mysqli_query($product_db, "INSERT INTO `products` (name, price, image, description) VALUES ('$p_name', '$p_price', '$p_image', '$p_description')") or die('query failed');
 
     if($insert_query){
         move_uploaded_file($p_image_tmp_name, $p_image_folder);
-        $message[] = 'Product add succesfully';
-        // header('location:admin.php');
+        $message[] = 'Proizvod uspešno dodat.';
+        header('Location: admin.php');
     }else{
-        $message[] = 'could not add the product';
-
+        $message[] = 'Nije moguće dodati proizvod.';
     }
+}
 }
 
 if(isset($_GET['delete'])){
@@ -59,7 +60,7 @@ if(isset($_GET['delete'])){
 
 if(isset($message)){
    foreach($message as $message){
-      echo '<div class="product_msg"><span>'.$message.'</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
+      echo '<div class="product-msg"><span>'.$message.'</span> <i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i> </div>';
    };
 };
 
