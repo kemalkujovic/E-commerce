@@ -25,7 +25,7 @@
                         <?php
                              if(isset($_SESSION['admin_name']) || isset($_SESSION['user_name'])){
                                 echo '<a href="cart.php" class="nav-item nav-link active">';
-                                echo '<h5 class="d-flex align-items-center px-5 cart">';
+                                echo '<h5 class="d-flex align-items-center px-2 cart">';
                                 echo "<i class=\"fas fa-shopping-cart\"></i> Cart";
                                 if (isset($_SESSION['cart'])){
                                     $count = count($_SESSION['cart']);
@@ -42,6 +42,7 @@
             // Prijavljen je admin
             echo '<li class="mr-3">Dobrodošli, ' . $_SESSION['admin_name'] . '!</li>';
             echo '<li><a href="logout.php">Odjava</a></li>';
+            echo '<li class="ml-4"><a href="admin.php"><i class="fa fa-user"></i></a></li>';
         } elseif (isset($_SESSION['user_name'])) {
             // Prijavljen je korisnik
             echo '<li class="mr-3">Dobrodošli, ' . $_SESSION['user_name'] . '!</li>';
