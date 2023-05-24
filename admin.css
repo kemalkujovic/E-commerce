@@ -26,3 +26,38 @@
 .product-msg i:hover {
   color: red;
 }
+.display-product-table table {
+  width: 100%;
+  text-align: center;
+  border-collapse: inherit;
+}
+
+.display-product-table table thead th {
+  padding: 1.5rem;
+  font-size: 1rem;
+  background-color: #3f4240;
+  color: white;
+}
+
+.display-product-table table td {
+  padding: 1rem;
+  font-size: 2rem;
+  color: black;
+}
+
+.display-product-table table td:first-child {
+  padding: 0;
+}
+
+.display-product-table table tr:nth-child(even) {
+  background-color: silver;
+}
+
+.display-product-table .empty {
+  margin-bottom: 2rem;
+  text-align: center;
+  background-color: orange;
+  color: black;
+  font-size: 2rem;
+  padding: 1.5rem;
+}
