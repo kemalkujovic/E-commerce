@@ -106,6 +106,7 @@ if (isset($_POST['remove'])){
                             echo $total;
                             ?></h6>
                     </div>
+                    <a href="checkout.php" class="btn btn-primary w-50 pb-2 m-auto">Checkout Now!</a>
                 </div>
             </div>
 

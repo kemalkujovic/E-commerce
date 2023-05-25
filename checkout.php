@@ -24,9 +24,9 @@ $db = new CreateDb("Productdb", "Producttb");
 
 <section class="checkout-form">
 
-
-
-   <h1 class="heading">complete your order</h1>
+   <h1 class="heading">Complete your order</h1>
+   
+   <form action="" method="post">
    <div class="display-order">
    <?php
 
@@ -39,9 +39,11 @@ $total = 0;
             foreach ($product_id as $id){
                 if ($row['id'] == $id){
                   $product_name = $row['product_name'];
-                  echo "<h5>$product_name</h5>";
-                  //   cartElement($row['product_image'], $row['product_name'],$row['product_price'], $row['id']);
-                    $total = $total + (int)$row['product_price'];
+                  $produce_image = $row['product_image'];
+                  $product_price = $row['product_price'];
+                  echo "<img src={$produce_image}></img>";
+                  echo "<h1>$product_name($$product_price)</h1>";
+                  $total = $total + (int)$row['product_price'];
                 }
             }
         }
@@ -50,12 +52,8 @@ $total = 0;
     }
 
 ?>
-
+<h2>Total: <?= $total; ?></h2>
    </div>
-
-
-   <form action="" method="post">
-
   
       <div class="flex">
          <div class="inputBox">
