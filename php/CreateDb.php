@@ -44,9 +44,9 @@ class CreateDb
             // sql to create new table
             $sql = " CREATE TABLE IF NOT EXISTS $tablename
                             (id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-                             product_name VARCHAR (25) NOT NULL,
-                             product_price FLOAT,
-                             product_image VARCHAR (100)
+                             name VARCHAR (25) NOT NULL,
+                             price FLOAT,
+                             image VARCHAR (100)
                             );";
 
             if (!mysqli_query($this->con, $sql)){

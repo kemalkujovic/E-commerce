@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+@include 'config.php';
 require_once ("php/CreateDb.php");
 require_once ("php/component.php");
 
@@ -57,17 +57,26 @@ if (isset($_POST['remove'])){
                 <hr>
 
                 <?php
-
                 $total = 0;
                     if (isset($_SESSION['cart'])){
                         $product_id = array_column($_SESSION['cart'], 'product_id');
 
                         $result = $db->getData();
+
+                        $select_products = mysqli_query($product_db, "SELECT * FROM `products`");    
+
+      if(mysqli_num_rows($select_products) > 0){
+         while($row = mysqli_fetch_assoc($select_products)){
+            $p_image_folder = 'uploaded_img/'.$row['image'];
+            cartElement($p_image_folder, $row['name'],$row['price'], $row['id']);
+            $total = $total + (int)$row['price'];
+         }}
+
                         while ($row = mysqli_fetch_assoc($result)){
                             foreach ($product_id as $id){
                                 if ($row['id'] == $id){
-                                    cartElement($row['product_image'], $row['product_name'],$row['product_price'], $row['id']);
-                                    $total = $total + (int)$row['product_price'];
+                                    cartElement($row['image'], $row['name'],$row['price'], $row['id']);
+                                    $total = $total + (int)$row['price'];
                                 }
                             }
                         }

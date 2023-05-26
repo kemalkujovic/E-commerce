@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+@include 'config.php';
 require_once('./php/CreateDb.php');
 require_once('./php/component.php');
 
@@ -58,11 +58,19 @@ if (isset($_POST['add'])){
     <?php
                 $result = $database->getData();
                 while ($row = mysqli_fetch_assoc($result)){
-                    component($row['product_name'], $row['product_price'], $row['product_image'], $row['id']);
+                    component($row['name'], $row['price'], $row['image'], $row['id']);
+                }
+                $select_products = mysqli_query($product_db, "SELECT * FROM `products`");
+                if(mysqli_num_rows($select_products) > 0){
+                   while($row = mysqli_fetch_assoc($select_products)){
+                    $p_image_folder = 'uploaded_img/'.$row['image'];
+                    component($row['name'], $row['price'], $p_image_folder, $row['id']);
+                   }
                 }
             ?>
     </div>
 </main>
+
 
 
 
