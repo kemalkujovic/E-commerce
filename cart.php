@@ -65,12 +65,12 @@ if (isset($_POST['remove'])){
 
                         $select_products = mysqli_query($product_db, "SELECT * FROM `products`");    
 
-      if(mysqli_num_rows($select_products) > 0){
-         while($row = mysqli_fetch_assoc($select_products)){
-            $p_image_folder = 'uploaded_img/'.$row['image'];
-            cartElement($p_image_folder, $row['name'],$row['price'], $row['id']);
-            $total = $total + (int)$row['price'];
-         }}
+    //   if(mysqli_num_rows($select_products) > 0){
+    //      while($row = mysqli_fetch_assoc($select_products)){
+    //         $p_image_folder = 'uploaded_img/'.$row['image'];
+    //         cartElement($p_image_folder, $row['name'],$row['price'], $row['id']);
+    //         $total = $total + (int)$row['price'];
+    //      }}
 
                         while ($row = mysqli_fetch_assoc($result)){
                             foreach ($product_id as $id){
