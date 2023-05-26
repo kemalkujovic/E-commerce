@@ -22,27 +22,33 @@ if(isset($_POST['order_btn'])){
 
 
    $detail_query = mysqli_query($product_db, "INSERT INTO `order`(name, number,email,method, flat,street,city, state, country, pin_code) VALUES('$name','$number','$email','$method', '$flat', '$street', '$city', '$state', '$country','$pin_code')") or die('query failed');
+   
    if($detail_query){
       echo "
-      <div class='order-message-container'>
-   <div class='message-container'>
-   <h3>Thank you for shopping </h3>
-      
-   <div class='customer-details'>
-      <p>Your name :  <span>".$name."</span></p>
-      <p>Your number :  <span>".$number."</span></p>
-      <p>Your email :  <span>".$email."</span></p>
-      <p>Your address :  <span>".$flat.", ".$street.",".$city.", ".$state.", ".$country.",</span></p>
-      <p>Your payment mode : <span>".$method."</span></p>
-      <p>(*pay when products arrives*)<span></span></p>
+      <div class='modal fade' id='exampleModal' tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+     <div class='modal-dialog' role='document'>
+       <div class='modal-content'>
+       <div class='modal-header justify-content-center'>
+       <h5 class='modal-title' id='exampleModalLongTitle'>Thanks for Shopping!</h5>
+       
+     </div>
+         <div class='modal-body'>
+         <p>Your name :  <span>".$name."</span></p>
+         <p>Your number :  <span>".$number."</span></p>
+         <p>Your email :  <span>".$email."</span></p>
+         <p>Your address :  <span>".$flat.", ".$street.",".$city.", ".$state.", ".$country.",</span></p>
+         <p>Your payment mode : <span>".$method."</span></p>
+         <p>(*pay when products arrives*)<span></span></p>
+         </div>
+         <div class='modal-footer justify-content-center'>
+         <a href='index.php' class='btn btn-primary btn-lg p-2'>Continue shopping</a>
+         </div>
+       </div>
+     </div>
    </div>
-   <a href='index.php' class='btn btn-primary btn-lg p-2'>Continue shopping</a>
-   </div>
-</div>";
-   };
-
+      ";
+   }
 };
-
 
 ?>
 
@@ -68,7 +74,7 @@ if(isset($_POST['order_btn'])){
          width: 150px;
       }
     </style>
-</head>
+   
 <body>
 <?php
     require_once ('php/header.php');
@@ -171,15 +177,27 @@ $total = 0;
             <input class="p-2" type="text" placeholder="E.g. 123456" name="pin_code" required>
          </div>
          </div>
-         <input type="submit" value="Order Now" name="order_btn" class="btn btn-primary w-100 p-2 mb-3 mt-3">  
+         <input type="submit"  value="Order Now" name="order_btn" class="btn btn-primary w-100 p-2 mb-3 mt-3">  
       </div>
    </form>
+
+
+<!-- Modal -->
 
 </section>
 
 </div>
 <?php require_once("php/footer.php")?>
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var detailQuery = <?php echo ($detail_query ? 'true' : 'false'); ?>;
+        if (detailQuery) {
+            var modal = document.getElementById("exampleModal");
+            var modalInstance = new bootstrap.Modal(modal);
+            modalInstance.show();
+        }
+    });
+</script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
