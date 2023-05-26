@@ -22,23 +22,37 @@ $db = new CreateDb("Productdb", "Producttb");
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
 
-    
     <title>Checkout</title>
-    <link rel="stylesheet" href="./css/checkout.css">
+    <style>
+      span{
+         font-size: 20px;
+         margin-bottom: 5px;
+      }
+      img{
+         width: 150px;
+      }
+    </style>
 </head>
 <body>
 <?php
     require_once ('php/header.php');
 ?>
-<div class="container">
+
+
+
+
+
+
+<div class="container flex-wrap bg-secondary mt-3 " >
 
 <section class="checkout-form">
 
-   <h1 class="heading">Complete your order</h1>
+   <h1 class="text-center">Complete your order</h1>
    
    <form action="" method="post">
-   <div class="display-order">
-   <?php
+
+   <div class="container border d-flex align-items-center flex-column overflow-auto">
+<?php
 
 $total = 0;
     if (isset($_SESSION['cart'])){
@@ -51,8 +65,8 @@ $total = 0;
                   $product_name = $row['product_name'];
                   $produce_image = $row['product_image'];
                   $product_price = $row['product_price'];
-                  echo "<img src={$produce_image}></img>";
-                  echo "<h1>$product_name($$product_price)</h1>";
+                  echo "<img class=\"img-fluid\" src={$produce_image}></img>";
+                  echo "<h5>$product_name($$product_price)</h5>";
                   $total = $total + (int)$row['product_price'];
                 }
             }
@@ -62,56 +76,67 @@ $total = 0;
     }
 
 ?>
-<h2>Total: <?= $total; ?></h2>
-   </div>
-  
-      <div class="flex">
-         <div class="inputBox">
+   <h2>Total: <?= $total; ?></h2>
+</div>
+   
+         <div class="row">
+            <div class="col d-flex flex-column ">
             <span>Your name</span>
-            <input type="text" placeholder="enter your name" name="name" required>
-         </div>
-         <div class="inputBox">
+            <input class="p-2" type="text" placeholder="Enter your name" name="name" required>         
+            </div>
+            <div class="col d-flex flex-column">
             <span>Your number</span>
-            <input type="number" placeholder="enter your number" name="number" required>
+            <input type="number" class="p-2" placeholder="Enter your number" name="number" required>
+            </div>
          </div>
-         <div class="inputBox">
+
+
+         <div class="row">
+         <div class="col d-flex flex-column">
             <span>Your email</span>
-            <input type="email" placeholder="enter your email" name="email" required>
+            <input type="email" class="p-2" placeholder="Enter your email" name="email" required>
          </div>
-         <div class="inputBox">
-            <span>Payment method</span>
-            <select name="method">
-               <option value="cash on delivery" selected>cash on devlivery</option>
-               <option value="credit cart">credit cart</option>
-               <option value="paypal">paypal</option>
-            </select>
+            <div class="col d-flex flex-column">
+               <span>Payment method</span>
+               <select name="method" class="p-2">
+                  <option value="cash on delivery" selected>Cash on devlivery</option>
+                  <option value="credit cart">Credit cart</option>
+                  <option value="paypal">Paypal</option>
+               </select>
          </div>
-         <div class="inputBox">
+           </div>
+            <div class="row">
+          <div class="col d-flex flex-column">
             <span>Address line 1</span>
-            <input type="text" placeholder="e.g. flat no." name="flat" required>
+            <input class="p-2" type="text" placeholder="E.g. flat no." name="flat" required>
          </div>
-         <div class="inputBox">
+         <div class="col d-flex flex-column">
             <span>Address line 2</span>
-            <input type="text" placeholder="e.g. street name" name="street" required>
+            <input class="p-2" type="text" placeholder="E.g. street name" name="street" required>
          </div>
-         <div class="inputBox">
+         </div>
+         <div class="row">
+          <div class="col d-flex flex-column">
             <span>City</span>
-            <input type="text" placeholder="e.g. Novi Pazar" name="city" required>
+            <input class="p-2" type="text" placeholder="E.g. Novi Pazar" name="city" required>
          </div>
-         <div class="inputBox">
+         <div class="col d-flex flex-column">
             <span>State</span>
-            <input type="text" placeholder="e.g. ras" name="state" required>
+            <input class="p-2" type="text" placeholder="E.g. ras" name="state" required>
          </div>
-         <div class="inputBox">
+</div>
+         <div class="row">
+         <div class="col d-flex flex-column">
             <span>Country</span>
-            <input type="text" placeholder="e.g. Serbia" name="country" required>
+            <input class="p-2" type="text" placeholder="E.g. Serbia" name="country" required>
          </div>
-         <div class="inputBox">
+         <div class="col d-flex flex-column">
             <span>Pin code</span>
-            <input type="text" placeholder="e.g. 123456" name="pin_code" required>
+            <input class="p-2" type="text" placeholder="E.g. 123456" name="pin_code" required>
          </div>
+         </div>
+         <input type="submit" value="Order Now" name="order_btn" class="btn btn-primary w-100 p-2 mb-3 mt-3">  
       </div>
-      <input type="submit" value="Order Now" name="order_btn" class="btn btn-primary w-100 p-3">
    </form>
 
 </section>
