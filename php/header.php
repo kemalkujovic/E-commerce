@@ -40,17 +40,17 @@
                          <?php
            if (isset($_SESSION['admin_name'])) {
             // Prijavljen je admin
-            echo '<li class="mr-3">Dobrodošli, ' . $_SESSION['admin_name'] . '!</li>';
-            echo '<li><a href="logout.php">Odjava</a></li>';
-            echo '<li class="ml-4"><a href="admin.php"><i class="fa fa-user"></i></a></li>';
+            echo '<li class="mr-3 text-white">Dobrodošli, ' . $_SESSION['admin_name'] . '!</li>';
+            echo '<li class="text-white"><a class="text-white" href="logout.php">Odjava</a></li>';
+            echo '<li class="ml-4 text-white"><a  href="admin.php"><i class="fa fa-user text-white"></i></a></li>';
         } elseif (isset($_SESSION['user_name'])) {
             // Prijavljen je korisnik
-            echo '<li class="mr-3">Dobrodošli, ' . $_SESSION['user_name'] . '!</li>';
-            echo '<li><a href="logout.php">Odjava</a></li>';
+            echo '<li class="mr-3 text-white">Dobrodošli, ' . $_SESSION['user_name'] . '!</li>';
+            echo '<li><a class="text-white" href="logout.php">Odjava</a></li>';
         } else {
             // Korisnik nije prijavljen
-            echo '<li class="d-flex mr-2"><a href="login.php">Prijava</a></li>';
-            echo '<li><a href="registration.php">Registracija</a></li>';
+            echo '<li class="d-flex mr-2 text-white"><a class="text-white btn btn-lg btn-outline-secondary" href="login.php">Prijava</a></li>';
+            echo '<li><a class="text-white btn btn-lg btn-outline-secondary" href="registration.php">Registracija</a></li>';
         }
         ?>
                     </h5>
