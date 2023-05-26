@@ -7,6 +7,42 @@ require_once ("php/CreateDb.php");
 
 $db = new CreateDb("Productdb", "Producttb");
 
+if(isset($_POST['order_btn'])){
+
+   $name = $_POST['name'];
+   $number = $_POST['number'];
+   $email = $_POST['email'];
+   $method = $_POST['method'];
+   $flat = $_POST['flat'];
+   $street = $_POST['street'];
+   $city = $_POST['city'];
+   $state = $_POST['state'];
+   $country = $_POST['country'];
+   $pin_code = $_POST['pin_code'];
+
+
+   $detail_query = mysqli_query($product_db, "INSERT INTO `order`(name, number,email,method, flat,street,city, state, country, pin_code) VALUES('$name','$number','$email','$method', '$flat', '$street', '$city', '$state', '$country','$pin_code')") or die('query failed');
+   if($detail_query){
+      echo "
+      <div class='order-message-container'>
+   <div class='message-container'>
+   <h3>Thank you for shopping </h3>
+      
+   <div class='customer-details'>
+      <p>Your name :  <span>".$name."</span></p>
+      <p>Your number :  <span>".$number."</span></p>
+      <p>Your email :  <span>".$email."</span></p>
+      <p>Your address :  <span>".$flat.", ".$street.",".$city.", ".$state.", ".$country.",</span></p>
+      <p>Your payment mode : <span>".$method."</span></p>
+      <p>(*pay when products arrives*)<span></span></p>
+   </div>
+   <a href='index.php' class='btn btn-primary btn-lg p-2'>Continue shopping</a>
+   </div>
+</div>";
+   };
+
+};
+
 
 ?>
 
@@ -21,7 +57,7 @@ $db = new CreateDb("Productdb", "Producttb");
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.css" />
-
+   <link rel="stylesheet" href="checkout.css">
     <title>Checkout</title>
     <style>
       span{
