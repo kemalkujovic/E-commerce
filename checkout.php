@@ -99,17 +99,29 @@ if(isset($_POST['order_btn'])){
 $total = 0;
     if (isset($_SESSION['cart'])){
         $product_id = array_column($_SESSION['cart'], 'product_id');
-
+        $select_products = mysqli_query($product_db, "SELECT * FROM `products`");
         $result = $db->getData();
+        while($row = mysqli_fetch_assoc($select_products)){
+         foreach ($product_id as $id){
+         $p_image_folder = 'uploaded_img/'.$row['image'];
+         if ($row['id'] == $id){
+            $product_name = $row['name'];
+                  $produce_image = $row['image'];
+                  $product_price = $row['price'];
+                  echo "<img class=\"img-fluid\" src={$p_image_folder}></img>";
+                  echo "<h5>$product_name($$product_price)</h5>";
+         $total = $total + (int)$row['price'];
+         };
+     }};
         while ($row = mysqli_fetch_assoc($result)){
             foreach ($product_id as $id){
                 if ($row['id'] == $id){
-                  $product_name = $row['product_name'];
-                  $produce_image = $row['product_image'];
-                  $product_price = $row['product_price'];
+                  $product_name = $row['name'];
+                  $produce_image = $row['image'];
+                  $product_price = $row['price'];
                   echo "<img class=\"img-fluid\" src={$produce_image}></img>";
                   echo "<h5>$product_name($$product_price)</h5>";
-                  $total = $total + (int)$row['product_price'];
+                  $total = $total + (int)$row['price'];
                 }
             }
         }
