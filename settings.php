@@ -1,5 +1,6 @@
 <?php
 session_start();
+@include 'config.php';
 
 
 if (!isset($_SESSION['user_name']) && !isset($_SESSION['admin_name'])) {
@@ -7,7 +8,17 @@ if (!isset($_SESSION['user_name']) && !isset($_SESSION['admin_name'])) {
   exit();
 }
 
-@include 'config.php';
+if(isset($_POSTP['submit'])){
+
+  $opwd = $_POST['opwd'];
+  $npwd = $_POST['npwd'];
+  $cpwd = $_POST['cpwd'];
+  
+
+};
+
+
+
 $userID = $_SESSION['id']; // ID korisnika čije podatke želite prikazati
 $select = "SELECT * FROM user_form WHERE id = $userID";
 $result = mysqli_query($conn, $select);
@@ -62,9 +73,6 @@ mysqli_free_result($result);
           <a href="#profile" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded active">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user mr-2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>Profile Information
           </a>
-          <a href="#account" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-settings mr-2"><circle cx="12" cy="12" r="3"></circle><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path></svg>Account Settings
-          </a>
           <a href="#security" data-toggle="tab" class="nav-item nav-link has-icon nav-link-faded">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-shield mr-2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>Security
           </a>
@@ -110,7 +118,26 @@ mysqli_free_result($result);
             </div>
               
           </form>
+          
         </div>
+        <div class="tab-pane" id="security">
+                <h6>SECURITY SETTINGS</h6>
+                <hr>
+                <form name="chngpwd" action="" method="post" onSubmit="return valid();">
+                  <div class="form-group">
+                    <label class="d-block">Change Password</label>
+                    <input type="text" name="opwd" class="form-control" placeholder="Enter your old password">
+                    <input type="text" name="npwd" class="form-control mt-1" placeholder="New password">
+                    <input type="text" name="cpwd" class="form-control mt-1" placeholder="Confirm new password">
+                  </div>
+                  <div>
+                    <input type="submit" name="submit" value="Change Password" class="btn btn-primary">
+                  </div>
+                </form>
+                <hr>
+                <form>
+                 
+              </div>
       </div>
             </div> 
             </div> 
@@ -121,6 +148,8 @@ mysqli_free_result($result);
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<div class="footer fixed-bottom">
 <?php require_once("php/footer.php")?>
+</div>
 </body>
 </html>

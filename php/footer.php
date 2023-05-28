@@ -1,6 +1,6 @@
-<div class="pt-5 ">
+<div class="pt-5 mt-2">
 
-  <footer class="mt-2 bg-dark text-center text-lg-start text-white">
+  <footer class="bg-dark text-center text-lg-start text-white">
     <!-- Grid container -->
     <div class="container p-4">
       <!--Grid row-->
