@@ -20,9 +20,9 @@ if(isset($_POST['submit'])){
   if($num > 0){
 
     $con = mysqli_query($conn, "UPDATE user_form set password = '$npwd' where id = '$userID'");
-    echo 'Password Change Succesfully';
+    $_SESSION['msg1'] = 'Password Change Succesfully';
   }else{
-    echo  'Password does not match';
+    $_SESSION['msg2'] = 'Password does not match';
     
   }
 
@@ -145,7 +145,6 @@ mysqli_free_result($result);
                   </form>
                 <hr>
                 <form>
-                 
               </div>
       </div>
             </div> 
