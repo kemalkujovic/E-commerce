@@ -10,8 +10,8 @@ if(isset($_POST['submit'])){
     $name = mysqli_real_escape_string($conn,$_POST['name']);
     $lastname = mysqli_real_escape_string($conn,$_POST['lastname']);
     $email = mysqli_real_escape_string($conn,$_POST['email']);
-    $pass = md5($_POST['password']);
-    $cpass = md5($_POST['repeat_password']);
+    $pass = $_POST['password'];
+    $cpass = $_POST['repeat_password'];
     $jmbg = mysqli_real_escape_string($conn,$_POST['jmbg']);
     $broj_telefona = mysqli_real_escape_string($conn,$_POST['contact_number']);
     $user_type = $_POST['user_type'];

@@ -8,15 +8,25 @@ if (!isset($_SESSION['user_name']) && !isset($_SESSION['admin_name'])) {
   exit();
 }
 
-if(isset($_POSTP['submit'])){
-
+if(isset($_POST['submit'])){
+  $userID = $_SESSION['id'];
   $opwd = $_POST['opwd'];
   $npwd = $_POST['npwd'];
   $cpwd = $_POST['cpwd'];
   
+  $query = mysqli_query($conn, "SELECT email, password from user_form where id = '$userID' AND password = '$opwd'");
+  $num = mysqli_fetch_array($query);
+
+  if($num > 0){
+
+    $con = mysqli_query($conn, "UPDATE user_form set password = '$npwd' where id = '$userID'");
+    echo 'Password Change Succesfully';
+  }else{
+    echo  'Password does not match';
+    
+  }
 
 };
-
 
 
 $userID = $_SESSION['id']; // ID korisnika čije podatke želite prikazati
@@ -53,7 +63,6 @@ mysqli_free_result($result);
 
 
 <?php require_once("php/header.php")?>
-
 
 <div class="container mb-5 mt-3">
 
@@ -130,10 +139,10 @@ mysqli_free_result($result);
                     <input type="text" name="npwd" class="form-control mt-1" placeholder="New password">
                     <input type="text" name="cpwd" class="form-control mt-1" placeholder="Confirm new password">
                   </div>
+                  <input type="submit" name="submit" value="Change Password" class="btn btn-primary">
                   <div>
-                    <input type="submit" name="submit" value="Change Password" class="btn btn-primary">
-                  </div>
-                </form>
+                    </div>
+                  </form>
                 <hr>
                 <form>
                  
