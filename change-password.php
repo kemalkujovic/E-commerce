@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['user_name']) && !isset($_SESSION['admin_name'])) {
+    header('location: index.php');
+    exit();
+  }
 @include 'config.php';
     if(isset($_POST['submit'])){
         $userID = $_SESSION['id'];
