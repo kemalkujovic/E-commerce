@@ -19,11 +19,13 @@ if(isset($_POST['submit'])){
         
         if($row['user_type'] == 'admin'){
             $_SESSION['admin_name'] = $row['ime'];  
+            $_SESSION['id'] = $row['id'];
            header('location:index.php');
   
            exit();
         }elseif($row['user_type'] == 'user'){
             $_SESSION['user_name'] = $row['ime'];
+            $_SESSION['id'] = $row['id'];
            header('location: index.php');
             exit();
         }
