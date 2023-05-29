@@ -86,7 +86,7 @@ if(isset($_POST['order_btn'])){
 
 
 
-<div class="container flex-wrap bg-secondary mt-3 " >
+<div class="container flex-wrap mt-3 " >
 
 <section class="checkout-form">
 

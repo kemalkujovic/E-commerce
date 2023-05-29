@@ -59,6 +59,16 @@ if(isset($_GET['delete'])){
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./admin.css">
     <title>Admin Page</title>
+
+    <style>
+        #cart_count{
+            padding: 0 0.9rem 0.1rem 0.9rem;
+        }
+        .product_new {
+  background-color: #626f7e;
+}
+
+    </style>
 </head>
 <body>
     
@@ -73,7 +83,7 @@ if(isset($message)){
 ?>
 <?php require_once("php/header.php")?>
 <div class="container mt-5">
-<section class="bg-secondary p-3 mb-5" >
+<section class="p-3 mb-5 product_new" >
     <form action="" method="post" class="add-product-form" enctype="multipart/form-data">
     <h3 class="text-white pt-3">Add a new product</h3>
     <input type="text" name="p_name" placeholder="Enter the product name" class="w-100 mt-3" required>
