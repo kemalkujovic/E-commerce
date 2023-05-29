@@ -26,6 +26,8 @@ if(isset($_POST['submit'])){
     
   }
 
+
+
 };
 
 
@@ -61,7 +63,17 @@ mysqli_free_result($result);
 </head>
 <body>
 
-
+<?php
+  if (isset($_SESSION['poruka'])) {
+    $poruka = $_SESSION['poruka'];
+  
+    // Prikazivanje poruke
+    echo '<div>' . $poruka . '</div>';
+  
+    // Nakon što je poruka prikazana, možete je ukloniti iz sesije
+    unset($_SESSION['poruka']);
+  }
+  ?>
 <?php require_once("php/header.php")?>
 
 <div class="container mb-5 mt-3">
