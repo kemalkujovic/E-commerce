@@ -22,7 +22,7 @@ if(isset($_POST['submit'])){
     $con = mysqli_query($conn, "UPDATE user_form set password = '$npwd' where id = '$userID'");
     $_SESSION['msg1'] = 'Password Change Succesfully';
   }else{
-    $_SESSION['msg2'] = 'Password does not match';
+    $_SESSION['msg1'] = 'Password does not match';
     
   }
 
