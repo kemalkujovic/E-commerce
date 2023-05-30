@@ -3,9 +3,8 @@ session_start();
 
 
 @include 'config.php';
-require_once ("php/CreateDb.php");
 
-$db = new CreateDb("Productdb", "Producttb");
+
 
 if(isset($_POST['order_btn'])){
 
@@ -101,7 +100,8 @@ $total = 0;
     if (isset($_SESSION['cart'])){
         $product_id = array_column($_SESSION['cart'], 'product_id');
         $select_products = mysqli_query($product_db, "SELECT * FROM `products`");
-        $result = $db->getData();
+        $select_products1 = mysqli_query($product_db, "SELECT * FROM `productdb`");
+        
         while($row = mysqli_fetch_assoc($select_products)){
          foreach ($product_id as $id){
          $p_image_folder = 'uploaded_img/'.$row['image'];
@@ -114,18 +114,18 @@ $total = 0;
          $total = $total + (int)$row['price'];
          };
      }};
-        while ($row = mysqli_fetch_assoc($result)){
-            foreach ($product_id as $id){
-                if ($row['id'] == $id){
-                  $product_name = $row['name'];
-                  $produce_image = $row['image'];
-                  $product_price = $row['price'];
-                  echo "<img class=\"img-fluid\" src={$produce_image}></img>";
-                  echo "<h5>$product_name($$product_price)</h5>";
-                  $total = $total + (int)$row['price'];
-                }
-            }
-        }
+     while($row = mysqli_fetch_assoc($select_products1)){
+      foreach ($product_id as $id){
+          if ($row['id'] == $id){
+            $product_name = $row['name'];
+            $produce_image = $row['image'];
+            $product_price = $row['price'];
+            echo "<img class=\"img-fluid\" src={$produce_image}></img>";
+            echo "<h5>$product_name($$product_price)</h5>";
+            $total = $total + (int)$row['price'];
+          }
+      }
+  }
     }else{
         echo "<h5>Cart is Empty</h5>";
     }

@@ -65,7 +65,7 @@
         echo '<i class="fa fa-gear"></i>';
         echo '</button>';
         echo '<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">';
-        echo "<a class='dropdown-item text-center' href=logout.php>Logout <i class='fa fa-sign-out' aria-hidden='true'></i></a>";
+        echo "<a class='dropdown-item text-center' href='logout.php'>Logout <i class='fa fa-sign-out' aria-hidden='true'></i></a>";
         echo "<a href='settings.php' class='dropdown-item text-center'>Settings <i class='fa fa-gear'></i></a>";
     }
     if(isset($_SESSION['admin_name'])){

@@ -2,10 +2,7 @@
 
 session_start();
 @include 'config.php';
-require_once ("php/CreateDb.php");
 require_once ("php/component.php");
-
-$db = new CreateDb("Productdb", "Producttb");
 
 if (isset($_POST['remove'])){
   if ($_GET['action'] == 'remove'){
@@ -61,9 +58,10 @@ if (isset($_POST['remove'])){
                     if (isset($_SESSION['cart'])){
                         $product_id = array_column($_SESSION['cart'], 'product_id');
 
-                        $result = $db->getData();
+                        
 
                         $select_products = mysqli_query($product_db, "SELECT * FROM `products`");    
+                        $select_products1 = mysqli_query($product_db, "SELECT * FROM `productdb`");    
 
       if(mysqli_num_rows($select_products) > 0){
          while($row = mysqli_fetch_assoc($select_products)){
@@ -75,8 +73,8 @@ if (isset($_POST['remove'])){
             };
         }
          }}
-
-                        while ($row = mysqli_fetch_assoc($result)){
+         if(mysqli_num_rows($select_products1) > 0){
+            while($row = mysqli_fetch_assoc($select_products1)){
                             foreach ($product_id as $id){
                                 if ($row['id'] == $id){
                                     cartElement($row['image'], $row['name'],$row['price'], $row['id']);
@@ -84,6 +82,7 @@ if (isset($_POST['remove'])){
                                 }
                             }
                         }
+                    }
                     }else{
                         echo "<h5>Cart is Empty</h5>";
                     }

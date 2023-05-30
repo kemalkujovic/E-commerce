@@ -2,11 +2,10 @@
 
 session_start();
 @include 'config.php';
-require_once('./php/CreateDb.php');
 require_once('./php/component.php');
 
 // create instance of Createdb class
-$database = new CreateDb("Productdb", "Producttb");
+
 
 if (isset($_POST['add'])){
     if(isset($_SESSION['cart'])){
@@ -56,10 +55,12 @@ if (isset($_POST['add'])){
     
     <div class="row text-center ">
     <?php
-                $result = $database->getData();
-                while ($row = mysqli_fetch_assoc($result)){
-                    component($row['name'], $row['price'], $row['image'], $row['id']);
-                }
+                    $select_products1 = mysqli_query($product_db, "SELECT * FROM `productdb`");
+                if(mysqli_num_rows($select_products1) > 0){
+                    while($row = mysqli_fetch_assoc($select_products1)){
+                     component($row['name'], $row['price'], $row['image'], $row['id']);
+                    }
+                 }
                 $select_products = mysqli_query($product_db, "SELECT * FROM `products`");
                 if(mysqli_num_rows($select_products) > 0){
                    while($row = mysqli_fetch_assoc($select_products)){
